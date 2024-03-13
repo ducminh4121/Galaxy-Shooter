@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Limit
+  - FX
+  - World
+  - Target
   layers:
   - Default
   - TransparentFX

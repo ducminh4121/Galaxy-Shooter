@@ -1,14 +1,19 @@
 using Lean.Pool;
 using System.Collections;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Move")]
     [SerializeField] Rigidbody2D rb;
     private Transform _myTransform;
     private float offsetX, offsetY;
     private Camera _camera;
 
+    [Space]
+    [Header("Shoot")]
+    [SerializeField] private float bulletReload = 0.1f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform turret;
     [SerializeField] private Transform muzzlePos;
@@ -35,7 +40,7 @@ public class Player : MonoBehaviour
         LeanPool.Spawn(muzzlePreafb, muzzlePos.position, muzzlePos.rotation);
         LeanPool.Spawn(bulletPrefab, turret.position, turret.rotation);
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(bulletReload);
         StartCoroutine(Shoot());
     }
 

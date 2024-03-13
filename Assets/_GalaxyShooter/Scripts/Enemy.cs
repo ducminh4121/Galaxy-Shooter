@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
         _currentHealth -= damage;
         healthBar.value = (float)_currentHealth/enemyData.health;
 
-        if ( _currentHealth < 0 ) 
+        if ( _currentHealth <= 0 ) 
         {
             LeanPool.Spawn(explosionPrefab, transform.position, transform.rotation);
             LeanPool.Despawn(gameObject);
