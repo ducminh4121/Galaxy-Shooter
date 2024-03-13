@@ -20,11 +20,19 @@ public class Map : MonoBehaviour
     [SerializeField] private float limitLoopY = -14.5f;
     private Vector3 _startPosition;
 
-    private void Awake()
+    void Awake()
     {
         _camera = Camera.main;
     }
-    
+
+    void Update()
+    {
+        backGround.Translate(Vector3.down * loopSpeed * Time.deltaTime);
+
+        LoopBG(firstBG, limitLoopY, _startPosition);
+        LoopBG(secondBG, limitLoopY, _startPosition);
+    }
+
     void Start()
     {
         float limitOffset = rightLimit.localScale.x;
@@ -43,14 +51,6 @@ public class Map : MonoBehaviour
         downLimit.position = Vector3.down * height;
         rightLimit.position = Vector3.right * width;
         leftLimit.position = Vector3.left * width;
-    }
-
-    private void Update()
-    {
-        backGround.Translate(Vector3.down * loopSpeed * Time.fixedDeltaTime);
-
-        LoopBG(firstBG, limitLoopY, _startPosition);
-        LoopBG(secondBG, limitLoopY, _startPosition);
     }
 
     void LoopBG(Transform bgTransform, float limitY, Vector3 restartPos)

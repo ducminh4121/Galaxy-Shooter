@@ -16,14 +16,6 @@ public class SpawnManager : MonoBehaviour
     private List<Enemy> _enemies = new List<Enemy>();
     private int _tacticStage = 0;
     
-    /*
-    private void Start()
-    {
-        FirstWaySpawn();
-        
-        StartCoroutine(MoveTactic());
-    }
-    */
     public void StartGame()
     {
         FirstWaySpawn();
