@@ -1,14 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Map : MonoBehaviour
 {
     private Camera _camera;
+
+    [Header("Map Limit")]
     [SerializeField] Transform rightLimit;
     [SerializeField] Transform leftLimit;
     [SerializeField] Transform upLimit;
     [SerializeField] Transform downLimit;
+
+    [Space]
+    [Header("BackGround")]
+    [SerializeField] Transform backGround;
+    [SerializeField] Transform firstBG;
+    [SerializeField] Transform secondBG;
+    [SerializeField] private float loopSpeed = 0.1f;
+    [SerializeField] private float limitLoopY = -14.5f;
+    private Vector3 _startPosition;
 
     private void Awake()
     {
@@ -17,18 +27,35 @@ public class Map : MonoBehaviour
     
     void Start()
     {
-       SetUpMapLimit();
-    }
- 
-    void SetUpMapLimit()
-    {
         float limitOffset = rightLimit.localScale.x / 2;
         float halfHeight = _camera.orthographicSize + limitOffset;
         float halfWidth = _camera.aspect * halfHeight + limitOffset;
 
-        upLimit.position = Vector3.up * halfHeight;
-        downLimit.position = Vector3.down * halfHeight;
-        rightLimit.position = Vector3.right * halfWidth;
-        leftLimit.position = Vector3.left * halfWidth;
+        SetUpMapLimit(halfHeight, halfWidth);
+
+        backGround.position = Vector3.down * halfHeight;
+        _startPosition = secondBG.position;
+    }
+
+    void SetUpMapLimit(float height, float width)
+    {
+        upLimit.position = Vector3.up * height;
+        downLimit.position = Vector3.down * height;
+        rightLimit.position = Vector3.right * width;
+        leftLimit.position = Vector3.left * width;
+    }
+
+    private void Update()
+    {
+        backGround.Translate(Vector3.down * loopSpeed * Time.fixedDeltaTime);
+
+        LoopBG(firstBG, limitLoopY, _startPosition);
+        LoopBG(secondBG, limitLoopY, _startPosition);
+    }
+
+    void LoopBG(Transform bgTransform, float limitY, Vector3 restartPos)
+    {
+        if (bgTransform.position.y < limitY)
+            bgTransform.position = restartPos;
     }
 }
