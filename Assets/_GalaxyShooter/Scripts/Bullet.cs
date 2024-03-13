@@ -1,4 +1,5 @@
 using Lean.Pool;
+using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -23,14 +24,16 @@ public class Bullet : MonoBehaviour
         if (collision.CompareTag("Limit"))
             LeanPool.Despawn(gameObject);
 
-        else if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy"))
         {
             Enemy enemy = collision.GetComponent<Enemy>();
-            if (enemy != null) 
+            if (enemy != null)
             {
                 enemy.OnHit(data.damage);
                 LeanPool.Spawn(hitEffectPrefab, hitPoint.position, hitPoint.rotation);
-                LeanPool.Despawn(gameObject);
+
+                if (gameObject.activeSelf)
+                    LeanPool.Despawn(gameObject);
             }
         }
     }

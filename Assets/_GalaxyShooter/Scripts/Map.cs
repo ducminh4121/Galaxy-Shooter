@@ -27,7 +27,7 @@ public class Map : MonoBehaviour
     
     void Start()
     {
-        float limitOffset = rightLimit.localScale.x / 2;
+        float limitOffset = rightLimit.localScale.x;
         float halfHeight = _camera.orthographicSize + limitOffset;
         float halfWidth = _camera.aspect * halfHeight + limitOffset;
 

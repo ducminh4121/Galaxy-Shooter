@@ -1,19 +1,21 @@
 using Lean.Pool;
 using System.Collections;
-using System.Runtime.ExceptionServices;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public PlayerData playerData;
+
+    [Space]
     [Header("Move")]
     [SerializeField] Rigidbody2D rb;
     private Transform _myTransform;
     private float offsetX, offsetY;
     private Camera _camera;
+    private Vector2 _mousePos = Vector2.zero;
 
     [Space]
     [Header("Shoot")]
-    [SerializeField] private float bulletReload = 0.1f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform turret;
     [SerializeField] private Transform muzzlePos;
@@ -27,12 +29,24 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Shoot());
+        StartCoroutine(DelayShootWhenStart());
     }
 
     void Update()
     {
+#if UNITY_EDITOR
+
         MoveTouchInput();
+
+#endif
+
+        MoveMouse();
+    }
+
+    IEnumerator DelayShootWhenStart()
+    {
+        yield return new WaitForSeconds(0.75f);
+        StartCoroutine(Shoot());
     }
 
     IEnumerator Shoot()
@@ -40,8 +54,28 @@ public class Player : MonoBehaviour
         LeanPool.Spawn(muzzlePreafb, muzzlePos.position, muzzlePos.rotation);
         LeanPool.Spawn(bulletPrefab, turret.position, turret.rotation);
 
-        yield return new WaitForSeconds(bulletReload);
+        yield return new WaitForSeconds(playerData.reloadTime);
         StartCoroutine(Shoot());
+    }
+
+    private void MoveMouse()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            _mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
+
+            offsetX = _mousePos.x - _myTransform.position.x;
+            offsetY = _mousePos.y - _myTransform.position.y;
+        }
+        if (Input.GetMouseButton(0))
+        {
+            _mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
+            rb.MovePosition(new Vector2(_mousePos.x - offsetX, _mousePos.y - offsetY));
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
 

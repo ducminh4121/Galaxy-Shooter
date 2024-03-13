@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 212458468123991999}
   - component: {fileID: 212458468123991997}
   - component: {fileID: 212458468123991986}
-  - component: {fileID: 2236848770120494449}
+  - component: {fileID: 6058511300806649091}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -454,7 +454,7 @@ Transform:
   m_GameObject: {fileID: 212458468123991998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.44, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 212458468105841961}
@@ -498,8 +498,11 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 61026b908b195c14197c64157c91e7b8, type: 2}
   healthBar: {fileID: 212458467771235898}
   explosionPrefab: {fileID: 645644402725620430, guid: d19a0328c33dda740b77286ff5eb2b22, type: 3}
---- !u!58 &2236848770120494449
-CircleCollider2D:
+  col: {fileID: 6058511300806649091}
+  explosion: {fileID: 8300000, guid: d5a73d10e3465d545883aa223a38a861, type: 3}
+  hit: {fileID: 8300000, guid: 815bdb244f2fc1c438c6f796e2856253, type: 3}
+--- !u!70 &6058511300806649091
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -511,9 +514,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.45
+  m_Offset: {x: -0.0015784055, y: -0.028539896}
+  m_Size: {x: 0.87993634, y: 0.8799368}
+  m_Direction: 0
 --- !u!1 &212458468377750122
 GameObject:
   m_ObjectHideFlags: 0

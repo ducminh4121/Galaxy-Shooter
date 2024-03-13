@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3902029400163209775}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MuzzleFlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3814150597324850587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3814150597719210619}
   - component: {fileID: 3814150597719210564}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 3814150598363406168}
   - component: {fileID: 3814150598363406175}
   - component: {fileID: 3814150598363406169}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,8 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd0d380b62123e4da37e19b71f34c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: a128759c6757bbe4b9cb1964f85e9b6f, type: 2}
   rb: {fileID: 3814150598363406168}
-  bulletReload: 0.1
   bulletPrefab: {fileID: 220622705005382752, guid: 99e0952d39382894586ecf871b950e7a, type: 3}
   turret: {fileID: 3814150597324850587}
   muzzlePos: {fileID: 3902029400163209775}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 8271749384412967365}
   - component: {fileID: 8071928022886324281}
   - component: {fileID: 8070655674082699957}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5125,7 +5125,7 @@ GameObject:
   - component: {fileID: 8215896660534145883}
   - component: {fileID: 8070887665962910593}
   - component: {fileID: 8071898749595209633}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Beam
   m_TagString: FX
   m_Icon: {fileID: 0}
